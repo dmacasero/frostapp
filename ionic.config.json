@@ -1,5 +1,7 @@
 {
   "name": "FrostApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
