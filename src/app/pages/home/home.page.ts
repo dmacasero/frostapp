@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { HeaderUtil } from "src/app/utils/header/header.util";
 import { Globals } from "src/app/utils/globals/globals.util";
 import { SourceService } from "src/app/services/source/source.service";
 import { ErrorService } from "src/app/services/error/error.service";
@@ -16,7 +15,6 @@ export class HomePage implements OnInit {
   public sources: SourceModel[] = [];
 
   constructor(
-    private headerUtil: HeaderUtil,
     private sourceSrvc: SourceService,
     private loader: LoaderUtil,
     private errorSrvc: ErrorService
@@ -32,8 +30,7 @@ export class HomePage implements OnInit {
       .showLoader("Loading Sources...")
       .subscribe((load: HTMLIonLoadingElement) => {
         load.present();
-        const header = this.headerUtil.getHeader(Globals.clientID);
-        this.sourceSrvc.getSource(header).subscribe(
+        this.sourceSrvc.getSource().subscribe(
           res => {
             this.sources = res;
             load.dismiss();

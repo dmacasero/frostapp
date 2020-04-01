@@ -7,8 +7,8 @@ import { IonicModule } from "@ionic/angular";
 import { SourceDetailsPageRoutingModule } from "./source-details-routing.module";
 
 import { SourceDetailsPage } from "./source-details.page";
-import { SourceInfoComponentModule } from "src/app/components/source-info.module";
 import { SourceInfoComponent } from "src/app/components/source-info/source-info.component";
+import { SourceInfoComponentModule } from "src/app/components/source-info/source-info.module";
 
 @NgModule({
   imports: [

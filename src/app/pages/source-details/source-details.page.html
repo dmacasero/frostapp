@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>source-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="homeUrl"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <app-source-info [source]="source"></app-source-info>
 </ion-content>
