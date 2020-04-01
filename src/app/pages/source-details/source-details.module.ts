@@ -9,6 +9,8 @@ import { SourceDetailsPageRoutingModule } from "./source-details-routing.module"
 import { SourceDetailsPage } from "./source-details.page";
 import { SourceInfoComponent } from "src/app/components/source-info/source-info.component";
 import { SourceInfoComponentModule } from "src/app/components/source-info/source-info.module";
+import { WeatherComponenttModule } from "src/app/components/weather/weather.module";
+import { WeatherComponent } from "src/app/components/weather/weather.component";
 
 @NgModule({
   imports: [
@@ -16,9 +18,10 @@ import { SourceInfoComponentModule } from "src/app/components/source-info/source
     FormsModule,
     IonicModule,
     SourceDetailsPageRoutingModule,
-    SourceInfoComponentModule
+    SourceInfoComponentModule,
+    WeatherComponenttModule
   ],
   declarations: [SourceDetailsPage],
-  entryComponents: [SourceInfoComponent]
+  entryComponents: [SourceInfoComponent, WeatherComponent]
 })
 export class SourceDetailsPageModule {}

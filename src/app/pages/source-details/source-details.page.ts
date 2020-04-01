@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { ErrorService } from "src/app/services/error/error.service";
 import { SourceDetailsRoutingKeys } from "./souce-details.routing.keys";
 import { SourceModel } from "src/app/models/source/source.model";
+import { LoaderUtil } from "src/app/utils/loader/loader.util";
 
 @Component({
   selector: "app-source-details",
@@ -19,6 +20,7 @@ export class SourceDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sourceSrvc: SourceService,
+    private loader: LoaderUtil,
     private errorSrvc: ErrorService
   ) {}
 
@@ -29,15 +31,20 @@ export class SourceDetailsPage implements OnInit {
   private parseURL(): Subscription {
     return this.route.paramMap.subscribe(params => {
       const sourceId = params.get(SourceDetailsRoutingKeys.PARAM_SOURCE);
-      this.retrieveOpp(sourceId).subscribe(
-        source => {
-          this.source = source;
-          console.log(source);
-        },
-        err => {
-          this.errorSrvc.logError(err);
-        }
-      );
+      this.loader
+        .showLoader("Getting Source Info...")
+        .subscribe((load: HTMLIonLoadingElement) => {
+          load.present();
+          this.retrieveOpp(sourceId).subscribe(
+            source => {
+              this.source = source;
+            },
+            err => {
+              this.errorSrvc.logError(err);
+            },
+            () => load.dismiss()
+          );
+        });
     });
   }
 

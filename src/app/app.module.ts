@@ -16,6 +16,7 @@ import { ErrorService } from "./services/error/error.service";
 // Native Modules
 import { HTTP } from "@ionic-native/http/ngx";
 import { SourceService } from "./services/source/source.service";
+import { WeatherService } from "./services/weather/weather.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { SourceService } from "./services/source/source.service";
     HTTP,
     ErrorService,
     SourceService,
+    WeatherService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

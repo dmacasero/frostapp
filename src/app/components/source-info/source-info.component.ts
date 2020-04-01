@@ -11,7 +11,5 @@ export class SourceInfoComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.source);
-  }
+  ngOnInit() {}
 }

@@ -1,0 +1,29 @@
+<ion-card>
+  <form [formGroup]="dateRangeForm">
+    <ion-item>
+      <ion-label>FROM: </ion-label>
+      <ion-datetime
+        mode="ios"
+        displayFormat="YYYY-MM-DD"
+        formControlName="fromDate"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>TO: </ion-label>
+      <ion-datetime
+        mode="ios"
+        displayFormat="YYYY-MM-DD"
+        formControlName="toDate"
+      ></ion-datetime>
+    </ion-item>
+  </form>
+  <ion-button
+    expand="full"
+    class="ion-no-margin"
+    (click)="search()"
+    [disabled]="dateRangeForm.invalid"
+  >
+    <ion-icon slot="start" name="search"></ion-icon>
+    Search
+  </ion-button>
+</ion-card>

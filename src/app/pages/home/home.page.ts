@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Globals } from "src/app/utils/globals/globals.util";
 import { SourceService } from "src/app/services/source/source.service";
 import { ErrorService } from "src/app/services/error/error.service";
 import { SourceModel } from "src/app/models/source/source.model";
@@ -22,7 +21,6 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.getSources();
-    // throw new Error("Method not implemented.");
   }
 
   getSources(): void {
@@ -32,12 +30,13 @@ export class HomePage implements OnInit {
         load.present();
         this.sourceSrvc.getSource().subscribe(
           res => {
+            console.log(res);
             this.sources = res;
-            load.dismiss();
           },
           err => {
-            load.dismiss();
-          }
+            this.errorSrvc.showError(err);
+          },
+          () => load.dismiss()
         );
       });
   }
