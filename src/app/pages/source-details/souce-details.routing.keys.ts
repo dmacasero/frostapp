@@ -1,3 +1,4 @@
 export const SourceDetailsRoutingKeys = {
-    BASE: 'source-details',
+  BASE: "source-details",
+  PARAM_SOURCE: "source"
 };

@@ -1,30 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { HomePage } from './home.page';
-import { SourceDetailsPage } from '../source-details/source-details.page';
-import { SourceDetailsRoutingKeys } from '../source-details/souce-details.routing.keys';
+import { HomePage } from "./home.page";
 
 const routes: Routes = [
   {
-    path: '',
-    children: [
-        {
-            path: '',
-            component: HomePage,
-            pathMatch: 'full',
-        },
-        {
-            path: `:${SourceDetailsRoutingKeys.BASE}`,
-            component: SourceDetailsPage,
-            pathMatch: 'full',
-        },
-    ],
+    path: "",
+    component: HomePage
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class HomePageRoutingModule {}

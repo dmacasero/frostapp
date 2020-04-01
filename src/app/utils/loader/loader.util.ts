@@ -9,7 +9,7 @@ export class LoaderUtil {
   showLoader(text: string): Observable<HTMLIonLoadingElement> {
     const loading = from(
       this.loadingController.create({
-        message: "Please wait...",
+        message: text,
         duration: 2000
       })
     );

@@ -6,8 +6,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" (click)="getSources()">
+<ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let item of source">{{item.name}}</ion-item>
+    <ion-item
+      *ngFor="let source of sources"
+      routerDirection="forward"
+      [routerLink]="toSourceDetail(source)"
+      >{{source.name}}</ion-item
+    >
   </ion-list>
 </ion-content>
