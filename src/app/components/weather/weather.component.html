@@ -21,7 +21,7 @@
     expand="full"
     class="ion-no-margin"
     (click)="search()"
-    [disabled]="dateRangeForm.invalid"
+    [disabled]="!source?.id"
   >
     <ion-icon slot="start" name="search"></ion-icon>
     Search

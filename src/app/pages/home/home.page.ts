@@ -30,11 +30,10 @@ export class HomePage implements OnInit {
         load.present();
         this.sourceSrvc.getSource().subscribe(
           res => {
-            console.log(res);
             this.sources = res;
           },
           err => {
-            this.errorSrvc.showError(err);
+            this.errorSrvc.showError(err.error);
           },
           () => load.dismiss()
         );

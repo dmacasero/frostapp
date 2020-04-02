@@ -7,6 +7,8 @@ import { ErrorService } from "src/app/services/error/error.service";
 import { SourceDetailsRoutingKeys } from "./souce-details.routing.keys";
 import { SourceModel } from "src/app/models/source/source.model";
 import { LoaderUtil } from "src/app/utils/loader/loader.util";
+import { WeatherModel } from "src/app/models/weather/weather.model";
+import { ObservationModel } from "src/app/models/observation/observation.model";
 
 @Component({
   selector: "app-source-details",
@@ -17,6 +19,7 @@ export class SourceDetailsPage implements OnInit {
   homeUrl = HomeRoutingKeys.BASE;
   private subs = new Subscription();
   source: SourceModel;
+  weather: WeatherModel[] = [];
   constructor(
     private route: ActivatedRoute,
     private sourceSrvc: SourceService,
@@ -40,7 +43,7 @@ export class SourceDetailsPage implements OnInit {
               this.source = source;
             },
             err => {
-              this.errorSrvc.logError(err);
+              this.errorSrvc.showError(err.error);
             },
             () => load.dismiss()
           );
@@ -50,5 +53,18 @@ export class SourceDetailsPage implements OnInit {
 
   private retrieveOpp(sourceId: string): Observable<SourceModel> {
     return this.sourceSrvc.getSourceById(sourceId);
+  }
+
+  loadWeather(e: WeatherModel[]) {
+    this.weather = e;
+    console.log(e);
+  }
+
+  getIcon(obs: ObservationModel): string {
+    if (obs && obs.elementId.indexOf("boolean_fair_weather")) {
+      return obs.value === 0 ? "cloud" : "sunny";
+    } else {
+      return "partly-sunny";
+    }
   }
 }

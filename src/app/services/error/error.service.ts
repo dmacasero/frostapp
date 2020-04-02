@@ -7,13 +7,12 @@ export class ErrorService {
   private static ERR_MSG_LEN = 80;
   constructor(private toastCtrl: ToastController) {}
 
-  showError(error: any) {
-    // TODO: add in rollbar logging later on
+  async showError(error: any) {
     console.error(error);
-  }
-
-  logError(error: any) {
-    // TODO: add in rollbar logging later on
-    console.error(error);
+    const toast = await this.toastCtrl.create({
+      message: error,
+      duration: 2000
+    });
+    toast.present();
   }
 }

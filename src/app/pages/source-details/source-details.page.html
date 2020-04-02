@@ -1,12 +1,27 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="homeUrl"></ion-back-button>
     </ion-buttons>
     <ion-title>Details</ion-title>
   </ion-toolbar>
 </ion-header>
+<app-source-info [source]="source"></app-source-info>
+<app-weather [source]="source" (weather)="loadWeather($event)"></app-weather>
 <ion-content>
-  <app-source-info [source]="source"></app-source-info>
-  <app-weather [source]="source"></app-weather>
+  <ion-list>
+    <ion-card *ngFor="let obs of weather">
+      <ion-item-group>
+        <ion-item-divider sticky color="medium">
+          <ion-label class="ion-margin">
+            {{ obs?.referenceTime | date: 'medium' }}
+          </ion-label>
+        </ion-item-divider>
+        <ion-item *ngFor="let item of obs?.observations">
+          <ion-icon [name]="getIcon(item)" slot="start"></ion-icon>
+          <ion-label>{{ item?.elementId }}</ion-label>
+        </ion-item>
+      </ion-item-group>
+    </ion-card>
+  </ion-list>
 </ion-content>

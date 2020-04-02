@@ -6,30 +6,31 @@ import { Globals } from "src/app/utils/globals/globals.util";
 
 import { from } from "rxjs";
 import { map } from "rxjs/operators";
+import { WeatherModel } from "src/app/models/weather/weather.model";
 
 @Injectable({ providedIn: "root" })
 export class WeatherService {
-  sourceEndpoint = "observations/availableTimeSeries/v0.jsonld?";
+  sourceEndpoint = "observations/v0.jsonld?";
 
   constructor(private http: HTTP) {}
 
   getWeather(sourceId: string, fromDate: string, toDate: string) {
     const endpoint =
       this.sourceEndpoint +
-      "sources=" +
-      sourceId +
+      "sources=SN18700" +
+      //   sourceId +
       "&referencetime=" +
-      fromDate +
-      "/" +
-      toDate +
+      "2019-11-24/2019-11-25" +
+      //   fromDate +
+      //   "/" +
+      //   toDate +
       "&elements=air_temperature,wind_speed,boolean_fair_weather(cloud_area_fraction P1D)";
-    console.log(endpoint);
     return from(
       this.http.get(Globals.APIURL + endpoint, null, Globals.headerOptions)
     ).pipe(
-      map(sources => JSON.parse(sources.data)),
-      map(sources =>
-        sources.data.map((source: SourceModel) => new SourceModel(source))
+      map(weathers => JSON.parse(weathers.data)),
+      map(weathers =>
+        weathers.data.map((weather: WeatherModel) => new WeatherModel(weather))
       )
     );
   }
