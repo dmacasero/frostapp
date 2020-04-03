@@ -8,7 +8,6 @@ export class ErrorService {
   constructor(private toastCtrl: ToastController) {}
 
   async showError(error: any) {
-    console.error(error);
     const toast = await this.toastCtrl.create({
       message: error,
       duration: 2000

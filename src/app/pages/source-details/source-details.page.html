@@ -20,7 +20,7 @@
         <ion-item *ngFor="let item of obs?.observations" lines="inset">
           <ion-icon [name]="getIcon(item)" slot="start"></ion-icon>
           <ion-label>
-            Element Name: {{ item?.elementId }}
+            Element Name: <i>{{ item?.elementId }}</i>
             <p>
               <ion-note>Value: {{ item?.value }} {{ item?.unit }}</ion-note>
             </p>

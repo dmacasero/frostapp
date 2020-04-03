@@ -57,7 +57,6 @@ export class SourceDetailsPage implements OnInit {
 
   loadWeather(e: WeatherModel[]) {
     this.weather = e;
-    console.log(e);
   }
 
   getIcon(obs: ObservationModel): string {

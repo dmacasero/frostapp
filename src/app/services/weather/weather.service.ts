@@ -17,13 +17,12 @@ export class WeatherService {
   getWeather(sourceId: string, fromDate: string, toDate: string) {
     const endpoint =
       this.sourceEndpoint +
-      "sources=SN18700" +
-      //   sourceId +
+      "sources=" +
+      sourceId +
       "&referencetime=" +
-      "2019-11-24/2019-11-25" +
-      //   fromDate +
-      //   "/" +
-      //   toDate +
+      fromDate +
+      "/" +
+      toDate +
       "&elements=air_temperature,wind_speed,boolean_fair_weather(cloud_area_fraction P1D)";
     return from(
       this.http.get(Globals.APIURL + endpoint, null, Globals.headerOptions)
