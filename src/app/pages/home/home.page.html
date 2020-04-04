@@ -6,12 +6,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-virtual-scroll [items]="sources">
     <ion-item
-      *ngFor="let source of sources"
+      *virtualItem="let source; let itemBounds = bounds;"
       routerDirection="forward"
       [routerLink]="toSourceDetail(source)"
       >{{source.name}}</ion-item
     >
-  </ion-list>
+  </ion-virtual-scroll>
 </ion-content>

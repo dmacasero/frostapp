@@ -9,8 +9,8 @@
 <app-source-info [source]="source"></app-source-info>
 <app-weather [source]="source" (weather)="loadWeather($event)"></app-weather>
 <ion-content>
-  <ion-list>
-    <ion-card *ngFor="let obs of weather">
+  <ion-virtual-scroll [items]="weather">
+    <ion-card *virtualItem="let obs; let itemBounds = bounds;">
       <ion-item-group>
         <ion-item-divider sticky color="medium">
           <ion-label class="ion-margin">
@@ -28,5 +28,5 @@
         </ion-item>
       </ion-item-group>
     </ion-card>
-  </ion-list>
+  </ion-virtual-scroll>
 </ion-content>
